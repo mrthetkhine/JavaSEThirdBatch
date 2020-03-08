@@ -17,12 +17,15 @@ public class ForLoopDemo
         {
             System.out.println("Hello World "+i);
         }
-        int arr [] = {10,20,30,40};
+        String arr [] = {"Orange","Apple","Banana"};
         
         System.out.println("Arr.length "+arr.length);
-        for(int i=0; i < arr.length; i++)
+        for(final String ele : arr)
         {
-            System.out.println("Arr "+i+ " "+ arr[i]);
+            //ele = "";
+            System.out.println("Arr  "+ele);
         }
+        System.out.println("Arr 0 "+ arr[0]);
+        System.out.println("Arr 1 "+ arr[1]);
     }
 }
