@@ -9,17 +9,18 @@ package ch4;
  *
  * @author thetkhine
  */
-public class MultiplicationTable
+public class TriangleDemo
 {
     public static void main(String[] args)
     {
-        for (int i = 3; i < 5; i++)
+        int outer = 6;
+        for (int i = 0; i < outer; i++)
         {
-            for (int j = 1; j < 13; j++)
+            for (int j = 0; j <=i; j++)
             {
-                System.out.println(i+ " * "+ j + " = "+ (i*j));
+                System.out.print("*");
             }
-            System.out.println("===============");
+            System.out.println();
         }
     }
 }
