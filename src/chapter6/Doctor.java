@@ -13,31 +13,44 @@ public class Doctor
 {
     String name, position, phoneNo;
     
+    Doctor(String name, String position, String phoneNo)
+    {
+        this(name,position);
+        this.phoneNo = phoneNo; 
+        System.out.println("3 Argument Contructor run");
+    }
+    Doctor(String name, String position)
+    {
+        this.name = name;
+        this.position = position;
+        System.out.println("2 Argument Contructor run");
+    }
     
     void show()
     {
         System.out.println("----------------------------");
         System.out.println("Doctor Name Dr "+name);
-        System.out.println("Doctor Position "+position);
+        System.out.println("Doctor Position "+position.toUpperCase());
         System.out.println("Doctor Phone no "+phoneNo);
         
     }
     
+    void singSong(String song)
+    {
+        System.out.println(this.name +" sing Song "+song);
+    }
+    
     public static void main(String[] args)
     {
-        Doctor uPhyu = new Doctor();
-        uPhyu.name = "U Phyu";
-       // uPhyu.position = "Surgical Doctor";
-        uPhyu.phoneNo = "12233";
-        
-        Doctor uMae = new Doctor();
-        uMae.name = "U Mae";
-        uMae.position = "Surgical Doctor";
-        uMae.phoneNo = "99111";
-        
+        Doctor uPhyu = new Doctor("U Phyu","Surgical Doctor");   
+        Doctor uMae = new Doctor("U Mae","Surgical Doctor","999");
+       
+        System.out.println("UPhyu "+ uPhyu);
         uPhyu.show();
-        
         uMae.show();
+        
+        uPhyu.singSong("Mya Nanda");
+        uMae.singSong("Another Song");
         
        
     }
