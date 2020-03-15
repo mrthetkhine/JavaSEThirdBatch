@@ -15,18 +15,27 @@ public class Arithmetic
     
     int add(int a , int b)
     {
+        System.out.println("Integer vesion ");
         int result = a +b ;
-        System.out.println(a +" + " + b + " is "+ result);
-        a = 100;
+       
         return result;
+    }
+    float add(float a, float b)
+    {
+        System.out.println("Float vesion ");
+        return a+b;
+    }
+    double add(double a, double b)
+    {
+        System.out.println("Double vesion ");
+        return a+b;
     }
     public static void main(String[] args)
     {
         Arithmetic ath = new Arithmetic();
         int a = 20, b = 15;
         int sum = ath.add( a,b);
-        System.out.println("Sum is "+sum);
-        System.out.println("A is "+ a);
-        //ath.add(10,35);
+        
+        ath.add(1.2,2.0f);
     }
 }
