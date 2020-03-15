@@ -11,7 +11,7 @@ package chapter6;
  */
 public class Number
 {
-   private double value;
+   double value;
    
    Number(double value)
    {
@@ -39,7 +39,7 @@ public class Number
         Number c = a.add(b);
         c.inc();
         
-        System.out.println("C "+ c.getValue());
+        System.out.println("C "+ c.inc().getValue());
     }
     
 }
