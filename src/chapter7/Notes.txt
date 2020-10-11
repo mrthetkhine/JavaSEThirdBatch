@@ -1,0 +1,25 @@
+n! = n * (n-1)!
+5 != 5 * 4!
+     5 * 4 * 3!
+     5 * 4 * 3* 2 !
+     5 * 4 * 3 * 2 * 1!
+     5 * 4 * 3 * 2 * 1
+
+// 1 base case 
+// accept paramater
+// self call, parameter adjust and call
+
+Access specifier
+
+private, protected, public, default(package)
+private-> can only access from their own class
+public -> can only access from anywhere
+protected-> can use from child class, same package
+default -> same package
+
+static method -> can only use static data, cannot use this or , instance data
+instance method -> can use static data or instance data
+
+nested class-> class inside class
+                static class
+                non static class-> non static class are called inner class
