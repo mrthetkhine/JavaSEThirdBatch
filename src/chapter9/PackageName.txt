@@ -1,0 +1,9 @@
+reverse domain name
+
+sun.com =>domain
+
+com.sun.
+
+www.company.com=>com.company.dto
+www.ngo.org => org.ngo.dto
+

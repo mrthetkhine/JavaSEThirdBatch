@@ -1,0 +1,36 @@
+Encapsulation
+Inheritance
+Polymorphism
+
+Inheritance
+    Reuse
+        Copy->Duplicate
+        Window 95-> Window XP
+
+Inheritance-> Code Reuse  
+           -> Add Functionality
+           -> Structuring Code
+           -> Design
+           -> Work in Conjuction with Polymorphism      
+
+Should learn Object Oriented Analysis And Design
+
+Shape->Rect-> CompositeShape
+
+if (drawingTool == rect)
+{
+    drawRect();
+}
+else if( drawingTool == circle)
+{
+    drawCircle
+}
+
+To make Polymorphism
+-Create Base Class
+-Create child Class 
+-Overwrite base Functionality in child
+-Use parent reference to call child method-> henece Polymorphism
+
+//Concrete class, =>used to create Object
+//Abstract class=> cannot used to create object class, just used for base class
