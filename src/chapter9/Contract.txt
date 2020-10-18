@@ -1,0 +1,10 @@
+Contract
+    
+    fly()
+
+    Aeroplane fly()
+    Bird fly()
+
+    Moduel 1 <- Module 2
+
+    Program to interface not implementation
