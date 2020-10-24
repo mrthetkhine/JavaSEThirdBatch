@@ -1,0 +1,7 @@
+Process
+    Program in execution
+
+Muliprogramming
+Scheduling
+Concurrent
+Mutual exculsion
