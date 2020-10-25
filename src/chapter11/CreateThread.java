@@ -63,6 +63,8 @@ public class CreateThread {
         System.out.println("iS alive "+th2.t.isAlive());
         try
         {
+            System.out.println("Thread State t1 "+th.t.getState());
+            System.out.println("Thread State t2 "+th2.t.getState());
             th.t.join();
             th2.t.join();
         }

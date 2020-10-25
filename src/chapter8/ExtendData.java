@@ -23,6 +23,7 @@ class Teacher extends Human
 {
     String school;
     
+    @Override
     public void work()
     {
         System.out.println("Teacher "+this.name+ " Works at "+this.school);
@@ -32,6 +33,7 @@ class Doctor extends Human
 {
     String speciality;
     
+    @Override
     public void work()
     {
         System.out.println("Doctor "+this.name+ " Works at "+this.speciality);
