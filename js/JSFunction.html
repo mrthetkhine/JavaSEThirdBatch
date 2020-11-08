@@ -1,0 +1,27 @@
+<html>  
+    <script>
+        //first class value
+
+        //Can assign to variable
+        var hello = function()
+        {
+            console.log("Hello");
+        }
+        hello();
+
+        //Can pass as parameter
+        function doSomethingAferHello(func)
+        {
+            func();
+            console.log("How are you");
+        }
+        doSomethingAferHello(hello);
+
+        //Can return from function
+        function getFun()
+        {
+            return hello;
+        }
+        getFun()();
+    </script>
+</html>

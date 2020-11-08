@@ -19,6 +19,7 @@ class Parent<T>{
     
     T getObj()
     {
+        System.out.println("Get class "+obj.getClass());
         return this.obj;
     }
 }
