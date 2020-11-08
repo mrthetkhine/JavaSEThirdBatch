@@ -1,0 +1,70 @@
+<html>  
+    <script>
+        var arr = [
+            {
+                name: "mg mg",
+                age : 22,
+                geneder : 'male',
+            },
+            {
+                name: "aung aung",
+                age : 45,
+                geneder : 'male',
+            },
+            {
+                name: "mya mya",
+                age : 22,
+                geneder : 'female',
+            },
+            {
+                name: "hla hla",
+                age : 48,
+                geneder : 'female',
+            },
+        ]
+        console.log("Arr ",arr);
+
+        /*    
+        var result = [];
+        for(var i=0;i< arr.length;i++)
+        {
+            var obj = arr[i];
+            if(obj.age > 30 && obj.geneder == 'male')
+            {
+                result.push({
+                    name : "U "+obj.name
+                });
+            }
+        }
+        */
+        function isSenior(obj)
+        {
+            return obj.age > 30;
+        }
+        function isMale(obj)
+        {
+            return obj.geneder == 'male';
+        }
+        function isFemale(obj)
+        {
+            return !isMale(obj);
+        }
+        function toU(obj)
+        {
+            return "U "+obj.name;
+        }
+        function toDaw(obj)
+        {
+            return "Daw "+obj.name;
+        }
+        /*
+        var result = arr.filter(isSenior)
+                        .filter(isMale)
+                        .map(toU);
+                        */
+        var result = arr.filter(isSenior)
+                        .filter(isFemale)
+                        .map(toDaw);                
+        console.log("Result ",result);
+    </script>
+</html>
