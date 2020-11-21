@@ -1,0 +1,40 @@
+<html>
+    <script>
+        var students = [
+            {
+                name: 'Aung Aung',
+                age: 21,
+                township:"North Okkalapa", 
+                gender : 'male',
+                voted:"NLD",
+            },
+            {
+                name: 'mg mg',
+                age: 21,
+                township:"Yankin", 
+                gender : 'male',
+                voted:"USDP",
+            },
+            {
+                name: 'hla hla',
+                age: 21,
+                township:"North Okkalapa", 
+                gender : 'female',
+                voted:"NLD",
+            },
+            {
+                name: 'soe soe',
+                age: 21,
+                township:"North Okkalapa", 
+                gender : 'female',
+                voted:"USDP",
+            },
+        ];
+        var result = students.filter(function (student){
+            return student.township == 'North Okkalapa';
+        }).filter(function(student){
+            return student.voted == "USDP";
+        });
+        console.log("Result ",result);
+    </script>
+</html>
