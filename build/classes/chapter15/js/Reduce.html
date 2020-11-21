@@ -30,14 +30,17 @@
                 voted:"USDP",
             },
         ];
-        var result = students.filter(function (student){
-            return student.township == 'North Okkalapa';
-        }).filter(function(student){
-            return student.voted == "NLD";
-        }).map(function(student)
-        {
-            return student.name;
-        });
-        console.log("Result ",result);
+        var group = students.reduce(function(a,b){
+                if(b.voted in a)
+                {
+                    a[b.voted].push(b);
+                }
+                else
+                {
+                    a[b.voted] = [b];
+                }
+                return a;
+        },{});
+        console.log("Group ",group);
     </script>
 </html>

@@ -33,7 +33,10 @@
         var result = students.filter(function (student){
             return student.township == 'North Okkalapa';
         }).filter(function(student){
-            return student.voted == "USDP";
+            return student.voted == "NLD";
+        }).map(function(student)
+        {
+            return student.name;
         });
         console.log("Result ",result);
     </script>
