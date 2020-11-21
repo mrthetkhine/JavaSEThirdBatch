@@ -27,6 +27,13 @@ public class FunctionInterfaceTwo {
         func = (a,b)-> a *b;
         System.out.println("Mult "+ func.invoke(10, 20));
         
+        func = (double a,double b)-> {
+            
+            System.out.println("Invoke division ");
+            return a /b;
+        };
+        System.out.println("Division "+ func.invoke(10, 2));
+        
     }
     
     
