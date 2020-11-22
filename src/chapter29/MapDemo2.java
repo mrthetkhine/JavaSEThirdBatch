@@ -26,6 +26,7 @@ public class MapDemo2 {
         List<String> names  = students.stream()
                                 .filter(student-> student.age>20)
                                 .map(student->student.name)
+                                .filter(name->name.length()>2)
                                 .collect(Collectors.toList());
         
         for(String name : names)
