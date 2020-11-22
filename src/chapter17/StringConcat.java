@@ -35,5 +35,8 @@ public class StringConcat {
         
         MyObject obj = new MyObject(10,20,30);
         System.out.println("Hello myobj "+ obj);
+        
+        char ch = "hello".charAt(1);
+        System.out.println("Ch "+ch);
     }
 }
