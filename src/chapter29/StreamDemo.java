@@ -53,5 +53,12 @@ public class StreamDemo {
         Optional<Integer> min = list.stream()
                             .min(Integer::compare);
         System.out.println("Min "+ min.get());
+        
+        Optional<Integer> sum = list
+                    .stream()
+                    .reduce((a,b)->a+b);
+        
+        System.out.println("Sum "+ sum.get());
+                        
     }
 }
