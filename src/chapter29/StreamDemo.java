@@ -49,5 +49,9 @@ public class StreamDemo {
                 .sorted()
                 .collect(Collectors.toList());
         System.out.println("Sorted "+sorted);
+        
+        Optional<Integer> min = list.stream()
+                            .min(Integer::compare);
+        System.out.println("Min "+ min.get());
     }
 }
