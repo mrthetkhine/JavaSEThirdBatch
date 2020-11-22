@@ -33,6 +33,8 @@ public class IteratorDemo {
         }
         
         Spliterator<Student> sIterator =students.stream().spliterator();
-        while(sIterator.tryAdvance((stu)->System.out.println(stu.name)));
+        Spliterator<Student> sIterator2 = sIterator.trySplit();
+        
+        while(sIterator2.tryAdvance((stu)->System.out.println(stu.name)));
     }
 }
