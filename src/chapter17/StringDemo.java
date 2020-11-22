@@ -20,6 +20,7 @@ public class StringDemo {
         
         
         System.out.println("str1.equals(str2) "+ (str1.equals(str2)));
+        System.out.println("str1.equals(str2) "+ ("Hello".equals(str2)));
         
         System.out.println("Instance of String "+ (obj instanceof String));
         System.out.println("Instance of Object "+ (obj instanceof Object));
