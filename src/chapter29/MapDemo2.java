@@ -41,5 +41,6 @@ public class MapDemo2 {
             resultName.add(stu.name);
         }
         System.out.println("Result "+ resultName);
+        
     }
 }
