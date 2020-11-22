@@ -33,5 +33,11 @@ public class StreamDemo {
         {
             System.out.println("Item "+i);
         }
+        
+        list
+                .stream()
+                .forEach((e)->{
+                    System.out.println("Item "+e);
+                });
     }
 }
