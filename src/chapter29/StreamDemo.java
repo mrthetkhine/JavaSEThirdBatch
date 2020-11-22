@@ -7,6 +7,7 @@ package chapter29;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -39,5 +40,8 @@ public class StreamDemo {
                 .forEach((e)->{
                     System.out.println("Item "+e);
                 });
+        Optional<Integer> max = list.stream()
+                .max(Integer::compare);
+        System.out.println("Max "+ max.get() + " isPresent "+max.isPresent());
     }
 }
