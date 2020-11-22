@@ -8,6 +8,7 @@ package chapter29;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Spliterator;
 import java.util.stream.Stream;
 
 /**
@@ -30,5 +31,8 @@ public class IteratorDemo {
         {
             System.out.println("Item "+studentIterator.next().name);
         }
+        
+        Spliterator<Student> sIterator =students.stream().spliterator();
+        while(sIterator.tryAdvance((stu)->System.out.println(stu.name)));
     }
 }
