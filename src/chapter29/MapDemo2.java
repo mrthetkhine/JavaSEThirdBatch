@@ -21,15 +21,24 @@ public class MapDemo2 {
         students.add(new Student("Tk",36));
         students.add(new Student("Mg mg",20));
         students.add(new Student("Aung Aung",25));
-        
+        students.add(new Student("Kyaw Kyaw",20));
         
         List<String> names  = students.stream()
+                                .filter(student-> student.age>20)
                                 .map(student->student.name)
                                 .collect(Collectors.toList());
         
         for(String name : names)
         {
             System.out.println("Name "+name);
+            
         }
+        
+        List<String> resultName = new ArrayList<String>();
+        for(Student stu : students)
+        {
+            resultName.add(stu.name);
+        }
+        System.out.println("Result "+ resultName);
     }
 }
