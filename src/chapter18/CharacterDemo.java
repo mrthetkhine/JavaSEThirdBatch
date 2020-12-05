@@ -18,5 +18,8 @@ public class CharacterDemo {
         System.out.println("isIdIgnorable "+ Character.isIdentifierIgnorable('1'));
         System.out.println("Letter or Digit "+ Character.isLetterOrDigit('A'));
         System.out.println("toLowerCase "+ Character.toLowerCase('A'));
+        
+        int အရေအတွက် = 12;
+        System.out.println("Qty "+အရေအတွက်);
     }
 }
