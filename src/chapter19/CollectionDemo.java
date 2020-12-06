@@ -6,6 +6,7 @@
 package chapter19;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -82,7 +83,8 @@ public class CollectionDemo {
         
         List<String> anotherList = list.subList(0, 2);
         System.out.println("SubList");
-        for(String s : anotherList)
+        Collections.sort(list);
+        for(String s : list)
         {
             System.out.println(s);
         }
