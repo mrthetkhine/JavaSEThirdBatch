@@ -24,7 +24,7 @@ public class ContainComparison {
             strList.add(i+"");
         }
         double start = System.currentTimeMillis();
-        boolean contain =  strList.contains("100000001");
+        boolean contain =  strList.contains("10000000");
         double end = System.currentTimeMillis();
         
         double time = (end-start)/1000;
@@ -37,13 +37,23 @@ public class ContainComparison {
         }
         
         start = System.currentTimeMillis();
-        contain =  set.contains("100000001");
+        contain =  set.contains("10000000");
         end = System.currentTimeMillis();
         
         time = (end-start)/1000;
         System.out.println("Set contain Mili sec "+time);
         
-        //HashMap<String> map = new HashMap<String>();
+        HashMap<String,String> map = new HashMap<String,String>();
+        for (int i = 0; i < 10000000; i++) {
+            map.put(i+"",i+"00");
+        }
+        start = System.currentTimeMillis();
+        contain =  map.containsKey("10000000");
+        end = System.currentTimeMillis();
+        
+        time = (end-start)/1000;
+        System.out.println("Map contain Mili sec "+time);
+      
     }
     
 }
