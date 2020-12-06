@@ -64,6 +64,28 @@ public class CollectionDemo {
         {
             System.out.println(s);
         }
+        list.add(0,"One");
+        System.out.println("Add index 0");
+        for(String s : list)
+        {
+            System.out.println(s);
+        }
+        System.out.println("Get 0 "+list.get(0));
+        System.out.println("IndexOf Six "+list.indexOf("Six"));
+        System.out.println("IndexOf Six "+list.indexOf("Seven"));
+        
+        list.set(0, "Hello");
+        for(String s : list)
+        {
+            System.out.println(s);
+        }
+        
+        List<String> anotherList = list.subList(0, 2);
+        System.out.println("SubList");
+        for(String s : anotherList)
+        {
+            System.out.println(s);
+        }
     }
     
 }
