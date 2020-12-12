@@ -19,7 +19,14 @@ public class StringTokenizerDemo {
         
         while(tokenizer.hasMoreTokens())
         {
-            System.out.println("Next token "+tokenizer.nextToken());
+            String key = tokenizer.nextToken();
+            String value = tokenizer.nextToken();
+            System.out.println("Key "+key + " Value "+value);
+        }
+        String[] arr = str.split("=");
+        for(String ar : arr)
+        {
+            System.out.println(ar);
         }
         System.out.println("Done");
     }
