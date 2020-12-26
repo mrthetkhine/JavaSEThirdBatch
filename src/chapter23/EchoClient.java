@@ -39,6 +39,9 @@ public class EchoClient {
             line = bIn.readLine();
             System.out.println("Server returned ");
             System.out.println(line);
+            
+            bIn.close();
+            out.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
