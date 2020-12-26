@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 /**
@@ -23,6 +25,7 @@ public class MouseEventDemo extends JFrame implements MouseListener{
     MouseEventDemo()
     {
         this.addMouseListener(this);
+        this.addWindowListener(new MyWindowAdapter());
     }
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -75,6 +78,13 @@ public class MouseEventDemo extends JFrame implements MouseListener{
         System.out.println("Paint "+msg);
         g.setColor(Color.BLACK);
         g.drawString(msg,x,y);
+    }
+    class MyWindowAdapter extends WindowAdapter
+    {
+        public void windowClosing(WindowEvent we)
+        {
+            System.exit(0);
+        }
     }
     public static void main(String[] args) {
         MouseEventDemo demo = new MouseEventDemo();
