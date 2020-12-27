@@ -20,25 +20,7 @@ import java.awt.event.WindowEvent;
  *
  * @author thetkhine
  */
-class MyMouseAdapter extends MouseAdapter
-{
-    
-    @Override
-    public void mouseEntered(MouseEvent me)
-    {
-        System.out.println("Mouse Entered");
-    }
-    @Override
-    public void mouseExited(MouseEvent me)
-    {
-        System.out.println("Mouse Exited");
-    }
-    @Override
-    public void mouseClicked(MouseEvent me)
-    {
-        System.out.println("Mouse Clicked");
-    }
-}
+
 public class GraphicsDemo extends Frame{
     
     GraphicsEnvironment ge;
@@ -61,14 +43,22 @@ public class GraphicsDemo extends Frame{
             msg += str + "\r\n";
             System.out.println("Font "+ str);
         }
+        
+        //Font f = this.getFont();
+        //System.out.println("Current Font Family "+ f.getFamily());
+        //System.out.println("Current Name "+ f.getFontName());
     }
+    
     public void paint(Graphics g)
     {
+        Font f = this.getFont();
+        System.out.println("Current Font Family "+ f.getFamily());
+        System.out.println("Current Name "+ f.getFontName());
         
         Color c = new Color(10,20,40);
         g.setColor(c);
-        Font f = new Font("Georgia",Font.PLAIN,24);
-        g.setFont(f);
+        Font f2 = new Font("Georgia",Font.PLAIN,24);
+        g.setFont(f2);
         g.drawString("Hello", 10, 50);
         g.drawLine(10, 50, 100, 50);
         
@@ -89,6 +79,25 @@ public class GraphicsDemo extends Frame{
         }
         
         
+    }
+    class MyMouseAdapter extends MouseAdapter
+    {
+
+        @Override
+        public void mouseEntered(MouseEvent me)
+        {
+            System.out.println("Mouse Entered");
+        }
+        @Override
+        public void mouseExited(MouseEvent me)
+        {
+            System.out.println("Mouse Exited");
+        }
+        @Override
+        public void mouseClicked(MouseEvent me)
+        {
+            System.out.println("Mouse Clicked");
+        }
     }
     public static void main(String[] args) {
         GraphicsDemo demo = new GraphicsDemo();
