@@ -7,8 +7,12 @@ package chapter25;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -16,8 +20,29 @@ import java.awt.event.WindowEvent;
  *
  * @author thetkhine
  */
+class MyMouseAdapter extends MouseAdapter
+{
+    
+    @Override
+    public void mouseEntered(MouseEvent me)
+    {
+        System.out.println("Mouse Entered");
+    }
+    @Override
+    public void mouseExited(MouseEvent me)
+    {
+        System.out.println("Mouse Exited");
+    }
+    @Override
+    public void mouseClicked(MouseEvent me)
+    {
+        System.out.println("Mouse Clicked");
+    }
+}
 public class GraphicsDemo extends Frame{
     
+    GraphicsEnvironment ge;
+    String msg = "";
     public GraphicsDemo()
     {
         addWindowListener(new WindowAdapter() {
@@ -28,14 +53,27 @@ public class GraphicsDemo extends Frame{
                 System.exit(0);
             }
         }); 
+        
+        addMouseListener(new MyMouseAdapter());
+        ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String fonts[] = ge.getAvailableFontFamilyNames();
+        for (String str : fonts) {
+            msg += str + "\r\n";
+            System.out.println("Font "+ str);
+        }
     }
     public void paint(Graphics g)
     {
-        g.setColor(Color.blue);
+        
+        Color c = new Color(10,20,40);
+        g.setColor(c);
+        Font f = new Font("Georgia",Font.PLAIN,24);
+        g.setFont(f);
         g.drawString("Hello", 10, 50);
         g.drawLine(10, 50, 100, 50);
         
         g.drawArc(10, 80, 50, 50, 0, 360);
+        
         
         int centerX = 800/2;
         int centerY = 800/2;
