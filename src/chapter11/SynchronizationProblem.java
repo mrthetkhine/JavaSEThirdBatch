@@ -12,10 +12,12 @@ class Counter
     public void incCount()
     {
         //count = count + 1;
+        
         synchronized(this)
         {
              this.count++;
         }
+        
        
     }
 }
