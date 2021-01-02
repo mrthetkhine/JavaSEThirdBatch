@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Panel;
 
@@ -17,26 +18,18 @@ import java.awt.Panel;
  *
  * @author thetkhine
  */
-public class BorderLayoutDemo extends Frame{
+public class GridLayoutDemo extends Frame{
     
-    BorderLayoutDemo()
+    GridLayoutDemo()
     {
-        setLayout(new BorderLayout());
-        Button left = new Button("Left");
-        Button center = new Button("Center");
-        Button right = new Button("Right");
-        Button top = new Button("Top");
-        Button bottom = new Button("Bottom");
-        
-        Panel centerPanel = new Panel();
-        centerPanel.add(center);
-        
-        add(top, BorderLayout.NORTH);
-        add(bottom, BorderLayout.SOUTH);
-        add(left, BorderLayout.WEST);
-        add(right, BorderLayout.EAST);
-        add(centerPanel,BorderLayout.CENTER);
-        
+        setLayout(new GridLayout(3,3));
+       
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Button btn = new Button("Row "+i + " Col "+j);
+                this.add(btn);
+            }
+        }
         addWindowListener(new MyWindowAdapter());
     }
     @Override
@@ -45,7 +38,7 @@ public class BorderLayoutDemo extends Frame{
         return new Insets(140,10,20,20);
     }
     public static void main(String[] args) {
-        BorderLayoutDemo demo = new BorderLayoutDemo();
+        GridLayoutDemo demo = new GridLayoutDemo();
         demo.setSize(new Dimension(1200,1200));
         demo.setTitle("Graphics Demo");
         
