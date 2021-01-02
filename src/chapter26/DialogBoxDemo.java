@@ -26,7 +26,7 @@ class SampleDialog extends Dialog
 {
     SampleDialog(Frame parent, String title)
     {
-        super(parent,title,false);
+        super(parent,title,true);
         setLayout(new FlowLayout());
         setSize(200,200);
         
