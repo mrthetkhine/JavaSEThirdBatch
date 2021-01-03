@@ -56,10 +56,14 @@ public class CyclicBarrierDemo {
         BarrierThread t1 = new BarrierThread(barrier,"One");
         BarrierThread t2 = new BarrierThread(barrier,"Two");
         BarrierThread t3 = new BarrierThread(barrier,"Three");
-        
+        BarrierThread t4 = new BarrierThread(barrier,"Four");
+        BarrierThread t5 = new BarrierThread(barrier,"Five");
+          
         t1.start();
         t2.start();
         t3.start();
+        t4.start();
+        t5.start();
         System.out.println("Done");
     }
 }
