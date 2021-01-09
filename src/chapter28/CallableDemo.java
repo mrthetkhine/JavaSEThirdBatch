@@ -9,6 +9,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -61,7 +62,7 @@ public class CallableDemo {
         Future<Integer> factorialResult;
         
         System.out.println("Starting");
-        sumResult = es.submit(new Sum(15));
+        sumResult = es.submit(new Sum(15000));
         factorialResult = es.submit(new Factorial(10));
         
         try
