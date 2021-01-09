@@ -42,7 +42,7 @@ public class SimipleExecutor {
         CountDownLatch cd3 = new CountDownLatch(5);
         CountDownLatch cd4 = new CountDownLatch(5);
         
-        ExecutorService es = Executors.newFixedThreadPool(3);
+        ExecutorService es = Executors.newFixedThreadPool(2);
         
         es.execute(new MyExThread(cd1,"A"));
         es.execute(new MyExThread(cd2,"B"));
