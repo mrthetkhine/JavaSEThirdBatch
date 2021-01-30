@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author thetkhine
  */
+
 public class ComponentDemo extends javax.swing.JFrame {
 
     /**
