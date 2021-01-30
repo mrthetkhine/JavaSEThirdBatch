@@ -5,6 +5,8 @@
  */
 package chapter32;
 
+import java.awt.Dialog;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +33,7 @@ public class TableDemo extends javax.swing.JFrame {
     /**
      * Creates new form TableDemo
      */
+    NewCustomer newCustomer = new NewCustomer();
     public TableDemo() {
         initComponents();
         this.loadData();
@@ -70,12 +73,22 @@ public class TableDemo extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         btnAddDlgOk = new javax.swing.JButton();
         btnAddDlgCancel = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUser = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        mnuAdd = new javax.swing.JMenuItem();
+        mnuDelete = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         dlgAddUser.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dlgAddUser.setTitle("Add User");
 
         jLabel1.setText("ID");
 
@@ -144,6 +157,12 @@ public class TableDemo extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tblUser.setModel(new javax.swing.table.DefaultTableModel(
@@ -169,6 +188,40 @@ public class TableDemo extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
+
+        jMenu3.setText("User");
+
+        mnuAdd.setText("Add");
+        mnuAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAddActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnuAdd);
+
+        mnuDelete.setText("Delete");
+        mnuDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuDeleteActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnuDelete);
+
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Customer");
+
+        jMenuItem1.setText("New");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
+        jMenuBar2.add(jMenu4);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,24 +253,34 @@ public class TableDemo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        showAddUserDlg();
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    public void showAddUserDlg() {
         // TODO add your handling code here:
         /*
         
         */
+        this.dlgAddUser.setModal(true);
         this.dlgAddUser.setSize(500, 400);
         this.dlgAddUser.show();
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        deleteUser();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    public void deleteUser() throws HeadlessException {
         // TODO add your handling code here:
         int row = this.tblUser.getSelectedRow();
         if(row !=-1)
         {
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete?", "Delete ", JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE);
-        
+            
             if(result == JOptionPane.OK_OPTION)
             {
-               ((DefaultTableModel)this.tblUser.getModel()).removeRow(row);
+                ((DefaultTableModel)this.tblUser.getModel()).removeRow(row);
             }
             
         }
@@ -225,9 +288,13 @@ public class TableDemo extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "Please select row", "Row not selected", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
     private void btnAddDlgOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDlgOkActionPerformed
+        addUser();
+    }//GEN-LAST:event_btnAddDlgOkActionPerformed
+
+    public void addUser() {
         // TODO add your handling code here:
         String id = this.txtId.getText();
         String name = this.txtName.getText();
@@ -240,13 +307,29 @@ public class TableDemo extends javax.swing.JFrame {
         this.txtName.setText("");
         this.txtAddress.setText("");
         
-       this.dlgAddUser.hide();
-    }//GEN-LAST:event_btnAddDlgOkActionPerformed
+        this.dlgAddUser.hide();
+    }
 
     private void btnAddDlgCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDlgCancelActionPerformed
         // TODO add your handling code here:
         this.dlgAddUser.hide();
     }//GEN-LAST:event_btnAddDlgCancelActionPerformed
+
+    private void mnuDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDeleteActionPerformed
+        // TODO add your handling code here:
+        this.deleteUser();
+    }//GEN-LAST:event_mnuDeleteActionPerformed
+
+    private void mnuAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAddActionPerformed
+        // TODO add your handling code here:
+         showAddUserDlg();
+    }//GEN-LAST:event_mnuAddActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+       
+        newCustomer.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,7 +375,16 @@ public class TableDemo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem mnuAdd;
+    private javax.swing.JMenuItem mnuDelete;
     private javax.swing.JTable tblUser;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtId;
