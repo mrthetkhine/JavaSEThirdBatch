@@ -6,6 +6,7 @@
 package jdbc.ui;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jdbc.StockDAO;
 import jdbc.StockDAOImpl;
@@ -65,6 +66,7 @@ public class StockCRUDUI extends javax.swing.JFrame {
         txtQuantity = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +92,13 @@ public class StockCRUDUI extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Quantity");
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,6 +129,8 @@ public class StockCRUDUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(266, 266, 266)
                 .addComponent(btnAdd)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -138,7 +149,9 @@ public class StockCRUDUI extends javax.swing.JFrame {
                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(27, 27, 27)
-                .addComponent(btnAdd)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd)
+                    .addComponent(btnUpdate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
@@ -152,7 +165,6 @@ public class StockCRUDUI extends javax.swing.JFrame {
         this.saveStock();
         this.clearInput();
     }//GEN-LAST:event_btnAddActionPerformed
-
     void saveStock()
     {
         String name = this.txtName.getText();
@@ -173,6 +185,33 @@ public class StockCRUDUI extends javax.swing.JFrame {
         this.txtPrice.setText("");
         this.txtQuantity.setText("");
     }
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        update();
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+    public void update()
+    {
+        int selectedRow = this.tblStock.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) this.tblStock.getModel();
+        if(selectedRow != -1)
+        {
+            Long id = Long.parseLong(model.getValueAt(selectedRow, 0).toString());
+            String name = (String) model.getValueAt(selectedRow,1);
+            Double price = Double.parseDouble(model.getValueAt(selectedRow, 2).toString());
+            Double quantity = Double.parseDouble(model.getValueAt(selectedRow, 3).toString());
+            
+            Stock st = new Stock(id,name,price,quantity);
+            st = this.dao.saveOrUpdate(st);
+            System.out.println("Update "+st);
+            JOptionPane.showMessageDialog(null,"Data update successfully");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Please select a row to update");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -210,6 +249,7 @@ public class StockCRUDUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
