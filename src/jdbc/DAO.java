@@ -10,8 +10,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jdbc.model.Stock;
 
 /**
  *
@@ -36,24 +39,32 @@ public class DAO {
             e.printStackTrace();
         }
     }
-    public void getStocks()
+    public List<Stock> getStocks()
     {
+        List<Stock> stocks = new ArrayList<>();
         try {
             Statement st = this.conn.createStatement();
             ResultSet result = st.executeQuery("SELECT * FROM stock");
             
             while(result.next())
             {
-                System.out.println("Name "+result.getString(2));
-                System.out.println("Price "+result.getDouble(3));
-                System.out.println("Quanity "+result.getDouble(4));
+                Long id = result.getLong("Id");
+                String name = result.getString("name");
+                Double price = result.getDouble("price");
+                Double quantity = result.getDouble("quantity");
                 
+                Stock stock  = new Stock(id, name, price, quantity);
+                
+                stocks.add(stock);
                 
             }
+            result.close();
+            st.close();
             
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        return stocks;
         
     }
     public static DAO getDAO()
@@ -66,6 +77,11 @@ public class DAO {
     }
     
     public static void main(String[] args) {
-        DAO.getDAO().getStocks();
+        List<Stock> stocks = DAO.getDAO().getStocks();
+        
+        for(Stock s: stocks)
+        {
+            System.out.println(s);
+        }
     }
 }
