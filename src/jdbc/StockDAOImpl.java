@@ -125,7 +125,22 @@ public class StockDAOImpl implements StockDAO{
         }
         else return this.updateStock(stock);
     }
-    
+    @Override
+    public boolean deleteStock(Long id) {
+        boolean result = false;
+        try {
+            PreparedStatement st = DAO.getDAO().getConnection().prepareStatement("DELETE FROM  stock  WHERE id=?;");
+            st.setLong(1, id);
+            
+            result = st.executeUpdate()>0;
+            
+            st.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
     public static void main(String[] args) {
         StockDAO dao = new StockDAOImpl();
         List<Stock> stocks = dao.getStocks();
@@ -137,8 +152,10 @@ public class StockDAOImpl implements StockDAO{
         Stock stock = new Stock(5L,"Our Mango",500.0,200.0);
         
         stock = dao.getById(1L);
-        System.out.println("Get stock "+stock);
+        System.out.println("Delete stock "+dao.deleteStock(5L));
     }
+
+    
 
     
     

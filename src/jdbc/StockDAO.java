@@ -18,4 +18,5 @@ public interface StockDAO {
       public Stock saveStock(Stock stock);
       public Stock updateStock(Stock stock);
       public Stock saveOrUpdate(Stock stock);
+      boolean deleteStock(Long id);
 }
