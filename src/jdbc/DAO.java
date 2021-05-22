@@ -68,6 +68,7 @@ public class DAO {
         return stocks;
         
     }
+    
     public Stock saveStock(Stock stock)
     {
         try {
@@ -91,6 +92,24 @@ public class DAO {
         }
         return stock;
     }
+    public Stock updateStock(Stock stock)
+    {
+        try {
+            PreparedStatement st = this.conn.prepareStatement("UPDATE stock SET name=?, price=?, quantity=? WHERE id=?;");
+            st.setString(1, stock.getName());
+            st.setDouble(2, stock.getPrice());
+            st.setDouble(3, stock.getQuanity());
+            st.setLong(4, stock.getId());
+            
+            st.executeUpdate();
+            
+            st.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return stock;
+    }
     public static DAO getDAO()
     {
         if(singleton == null)
@@ -107,9 +126,9 @@ public class DAO {
         {
             System.out.println(s);
         }
-        Stock stock = new Stock("Mango",500.0,200.0);
+        Stock stock = new Stock(4L,"My Mango",500.0,200.0);
         
-        stock = DAO.getDAO().saveStock(stock);
+        stock = DAO.getDAO().updateStock(stock);
         System.out.println("Save stock "+stock);
     }
 }
