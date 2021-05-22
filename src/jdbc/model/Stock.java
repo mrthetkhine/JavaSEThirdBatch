@@ -15,6 +15,7 @@ public class Stock {
     Double price;
     Double quanity;
 
+
     public Stock(Long id, String name, Double price, Double quanity) {
         this.id = id;
         this.name = name;
@@ -22,6 +23,11 @@ public class Stock {
         this.quanity = quanity;
     }
 
+    public Stock(String name, Double price, Double quanity) {
+        this.name = name;
+        this.price = price;
+        this.quanity = quanity;
+    }
     
     public Long getId() {
         return id;

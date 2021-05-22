@@ -7,6 +7,7 @@ package jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -67,6 +68,29 @@ public class DAO {
         return stocks;
         
     }
+    public Stock saveStock(Stock stock)
+    {
+        try {
+            PreparedStatement st = this.conn.prepareStatement("INSERT INTO stock(name,price,quantity) VALUES(?,?,?);",
+                    Statement.RETURN_GENERATED_KEYS);
+            st.setString(1, stock.getName());
+            st.setDouble(2, stock.getPrice());
+            st.setDouble(3, stock.getQuanity());
+            
+            st.executeUpdate();
+            
+            ResultSet rs= st.getGeneratedKeys();
+	    if(rs.next()){
+                stock.setId(rs.getLong(1));
+	    }
+            rs.close();
+            st.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return stock;
+    }
     public static DAO getDAO()
     {
         if(singleton == null)
@@ -83,5 +107,9 @@ public class DAO {
         {
             System.out.println(s);
         }
+        Stock stock = new Stock("Mango",500.0,200.0);
+        
+        stock = DAO.getDAO().saveStock(stock);
+        System.out.println("Save stock "+stock);
     }
 }
