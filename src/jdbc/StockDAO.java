@@ -13,6 +13,7 @@ import jdbc.model.Stock;
  * @author thetkhine
  */
 public interface StockDAO {
+      Stock getById(Long id);  
       public List<Stock> getStocks();
       public Stock saveStock(Stock stock);
       public Stock updateStock(Stock stock);

@@ -19,6 +19,34 @@ import jdbc.model.Stock;
  */
 public class StockDAOImpl implements StockDAO{
 
+    @Override
+    public Stock getById(Long id) {
+        Stock stock = null;
+        try {
+           
+            Statement st = DAO.getDAO().getConnection().createStatement();
+            ResultSet result = st.executeQuery("SELECT * FROM stock WHERE id="+id);
+            
+            while(result.next())
+            {
+              
+                String name = result.getString("name");
+                Double price = result.getDouble("price");
+                Double quantity = result.getDouble("quantity");
+                
+                stock  = new Stock(id, name, price, quantity);
+               
+                
+            }
+            result.close();
+            st.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return stock;
+    }
+    
     public List<Stock> getStocks()
     {
         List<Stock> stocks = new ArrayList<>();
@@ -108,8 +136,10 @@ public class StockDAOImpl implements StockDAO{
         }
         Stock stock = new Stock(5L,"Our Mango",500.0,200.0);
         
-        stock = dao.saveOrUpdate(stock);
-        System.out.println("Save stock "+stock);
+        stock = dao.getById(1L);
+        System.out.println("Get stock "+stock);
     }
+
+    
     
 }
