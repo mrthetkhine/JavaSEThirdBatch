@@ -5,17 +5,40 @@
  */
 package jdbc.ui;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import jdbc.StockDAO;
+import jdbc.StockDAOImpl;
+import jdbc.VocherTransactionDAO;
+import jdbc.VoucherTransactionDAOImpl;
+import jdbc.model.Stock;
+import jdbc.model.VoucherTransaction;
+
 /**
  *
  * @author thetkhine
  */
 public class VoucherTranUI extends javax.swing.JFrame {
 
+    StockDAO stockDao = new StockDAOImpl();
+    VocherTransactionDAO tranDao = new VoucherTransactionDAOImpl();
+    List<Stock> stocks;
     /**
      * Creates new form VoucherUI
      */
     public VoucherTranUI() {
         initComponents();
+        this.loadStock();
+    }
+    
+    public void loadStock()
+    {
+        this.stocks = this.stockDao.getStocks();
+        
+        for(Stock stock : stocks)
+        {
+            this.cboStock.addItem(stock.getName());
+        }
     }
 
     Long voucherId;
@@ -35,17 +58,20 @@ public class VoucherTranUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTransactions = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtVoucherId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cboStock = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtPrice = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTransactions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -53,7 +79,7 @@ public class VoucherTranUI extends javax.swing.JFrame {
                 "Voucher Id", "Stock Id", "Stock Name", "Price", "Quantity"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblTransactions);
 
         jLabel1.setText("Voucher Id");
 
@@ -61,7 +87,24 @@ public class VoucherTranUI extends javax.swing.JFrame {
 
         jLabel2.setText("Stock");
 
+        cboStock.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboStockItemStateChanged(evt);
+            }
+        });
+
         jLabel3.setText("Quantity");
+
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Price");
+
+        txtPrice.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,14 +116,18 @@ public class VoucherTranUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtVoucherId)
-                            .addComponent(cboStock, 0, 208, Short.MAX_VALUE)
-                            .addComponent(txtQuantity))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtVoucherId)
+                                .addComponent(cboStock, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtQuantity)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -95,11 +142,17 @@ public class VoucherTranUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cboStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(3, 3, 3)
+                .addComponent(btnAdd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -107,6 +160,49 @@ public class VoucherTranUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        this.addTrans();
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void cboStockItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboStockItemStateChanged
+        // TODO add your handling code here:
+        this.changePrice();
+    }//GEN-LAST:event_cboStockItemStateChanged
+    public void changePrice()
+    {
+        int stockSelected = this.cboStock.getSelectedIndex();
+        Stock stock = this.stocks.get(stockSelected);
+        this.txtPrice.setText(stock.getPrice()+"");
+    }
+    public void addTrans()
+    {
+        int stockSelected = this.cboStock.getSelectedIndex();
+        Stock stock = this.stocks.get(stockSelected);
+        System.out.println("Get Id "+stock.getName() + " ID  "+stock.getId());
+        
+        Long voucherId = Long.parseLong(this.txtVoucherId.getText());
+        Long stockId = stock.getId();
+        Double quantity = Double.parseDouble(this.txtQuantity.getText());
+        VoucherTransaction trans = new VoucherTransaction(voucherId, stockId, quantity);
+        trans = this.tranDao.saveTransaction(trans);
+        
+        Object[] row = new Object[5];
+        row[0] = voucherId;
+        row[1] = stockId;
+        row[2] = stock.getName();
+        row[3] = stock.getPrice();
+        row[4] = quantity;
+        
+        DefaultTableModel model  =(DefaultTableModel)this.tblTransactions.getModel();
+        model.addRow(row);
+        
+        this.clearTextBox();
+    }
+    public void clearTextBox()
+    {
+        this.txtQuantity.setText("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -144,12 +240,15 @@ public class VoucherTranUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JComboBox<String> cboStock;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblTransactions;
+    private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtVoucherId;
     // End of variables declaration//GEN-END:variables
