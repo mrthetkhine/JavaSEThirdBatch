@@ -88,4 +88,38 @@ public class VoucherTransactionDAOImpl implements VocherTransactionDAO{
             System.out.println(tran);
         }
     }
+
+    @Override
+    public List<VoucherTransaction> getTranscationByVoucherId(Long voucher_id) {
+        List<VoucherTransaction> transactions = new ArrayList<>();
+        try {
+            Statement st = DAO.getDAO().getConnection().createStatement();
+            ResultSet result = st.executeQuery("SELECT voucher_transaction.id, stock.name,stock.price,voucher_transaction.quantity\n" +
+"FROM pos.voucher_transaction,stock\n" +
+"WHERE voucher_transaction.stock_id = stock.id "+
+ " AND voucher_transaction.voucher_id="+voucher_id           );
+            
+            while(result.next())
+            {
+                Long id = result.getLong("Id");
+                String stockName= result.getString("name");
+                Double stockPrice = result.getDouble("price");
+                Double quantity = result.getDouble("quantity");
+                
+                VoucherTransaction tran = new VoucherTransaction();
+                tran.setId(id);
+                tran.setStockName(stockName);
+                tran.setQuantity(quantity);
+                tran.setPrice(stockPrice);
+                transactions.add(tran);
+                
+            }
+            result.close();
+            st.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return transactions;
+    }
 }

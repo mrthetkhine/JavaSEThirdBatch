@@ -15,6 +15,12 @@ public class VoucherTransaction {
     Long stockId;
     Double quantity;
 
+    String stockName;
+    Double price;
+    
+    public VoucherTransaction()
+    {
+    }
     public VoucherTransaction(Long id, Long voucherId, Long stockId, Double quantity) {
         this.id = id;
         this.voucherId = voucherId;
@@ -61,6 +67,22 @@ public class VoucherTransaction {
         this.quantity = quantity;
     }
 
+    public String getStockName() {
+        return stockName;
+    }
+
+    public void setStockName(String stockName) {
+        this.stockName = stockName;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+    
     @Override
     public String toString() {
         return "VoucherTransaction{" + "id=" + id + ", voucherId=" + voucherId + ", stockId=" + stockId + ", quantity=" + quantity + '}';

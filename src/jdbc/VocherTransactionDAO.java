@@ -15,4 +15,6 @@ import jdbc.model.VoucherTransaction;
 public interface VocherTransactionDAO {
     List<VoucherTransaction> getAllTransaction();
     VoucherTransaction saveTransaction(VoucherTransaction tran);
+    
+    List<VoucherTransaction> getTranscationByVoucherId(Long id);
 }
