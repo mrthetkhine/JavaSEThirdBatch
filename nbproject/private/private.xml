@@ -4,6 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/thetkhine/Project/Turing/Java/JavaSEThirdBatch/src/jdbc/ui/StockCRUDUI.java</file>
+            <file>file:/Users/thetkhine/Project/Turing/Java/JavaSEThirdBatch/src/jdbc/VoucherTransactionDAOImpl.java</file>
+            <file>file:/Users/thetkhine/Project/Turing/Java/JavaSEThirdBatch/src/jdbc/ui/MainFrame.java</file>
+            <file>file:/Users/thetkhine/Project/Turing/Java/JavaSEThirdBatch/src/jdbc/ui/VoucherTranUI.java</file>
+            <file>file:/Users/thetkhine/Project/Turing/Java/JavaSEThirdBatch/src/jdbc/VocherTransactionDAO.java</file>
+            <file>file:/Users/thetkhine/Project/Turing/Java/JavaSEThirdBatch/src/jdbc/model/VoucherTransaction.java</file>
+            <file>file:/Users/thetkhine/Project/Turing/Java/JavaSEThirdBatch/src/jdbc/ui/ViewVoucher.java</file>
         </group>
     </open-files>
 </project-private>

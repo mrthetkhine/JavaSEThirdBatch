@@ -42,27 +42,28 @@ INSERT INTO `stock` VALUES (1,'Apple',100,1800),(2,'Orange',100,150),(3,'Banana'
 UNLOCK TABLES;
 
 --
--- Table structure for table `transaction`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `transaction`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `transaction` (
+CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `stock_id` int DEFAULT NULL,
-  `quantity` double DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `transaction`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `transaction` WRITE;
-/*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-/*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'admin','8adb2af49c8f6b6c101ed6507335eec4'),(2,'user','bfc781f9249b858588dde1204a3ab03c'),(3,'admin1','8b9f8b015bda04de410a3c5ca506fe85');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -76,7 +77,7 @@ CREATE TABLE `voucher` (
   `id` int NOT NULL AUTO_INCREMENT,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,6 +86,7 @@ CREATE TABLE `voucher` (
 
 LOCK TABLES `voucher` WRITE;
 /*!40000 ALTER TABLE `voucher` DISABLE KEYS */;
+INSERT INTO `voucher` VALUES (1,'2021-05-23 00:00:00'),(2,'2021-05-23 00:00:00'),(3,'2021-05-23 00:00:00'),(4,'2021-05-23 00:00:00'),(5,'2021-05-23 00:00:00'),(6,'2021-05-23 00:00:00');
 /*!40000 ALTER TABLE `voucher` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,13 +100,14 @@ DROP TABLE IF EXISTS `voucher_transaction`;
 CREATE TABLE `voucher_transaction` (
   `id` int NOT NULL AUTO_INCREMENT,
   `voucher_id` int DEFAULT NULL,
-  `transaction_id` int DEFAULT NULL,
+  `stock_id` int DEFAULT NULL,
+  `quantity` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `voucher_fk_key_idx` (`voucher_id`),
-  KEY `voucker_transaction_Key_idx` (`transaction_id`),
-  CONSTRAINT `voucher_fk_key` FOREIGN KEY (`voucher_id`) REFERENCES `voucher` (`id`),
-  CONSTRAINT `voucker_transaction_Key` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `stock_fk_key_idx` (`stock_id`),
+  CONSTRAINT `stock_fk_key` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`id`),
+  CONSTRAINT `voucher_fk_key` FOREIGN KEY (`voucher_id`) REFERENCES `voucher` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,6 +116,7 @@ CREATE TABLE `voucher_transaction` (
 
 LOCK TABLES `voucher_transaction` WRITE;
 /*!40000 ALTER TABLE `voucher_transaction` DISABLE KEYS */;
+INSERT INTO `voucher_transaction` VALUES (1,1,1,'5.0'),(2,1,2,'10.0'),(3,1,3,'12.0'),(4,2,1,'5.0'),(5,2,4,'10.0'),(6,2,6,'12.0'),(7,5,1,'2.0'),(8,5,3,'20.0'),(9,5,6,'4.0'),(10,5,7,'10.0'),(11,6,1,'10.0'),(12,6,3,'4.0'),(13,6,6,'3.0');
 /*!40000 ALTER TABLE `voucher_transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -125,4 +129,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-22 20:29:39
+-- Dump completed on 2021-05-29 19:12:33
